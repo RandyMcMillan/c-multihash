@@ -18,7 +18,7 @@ static char *test_all_hashes_have_names(void) {
 
 static char *test_name_is_null_when_out_of_bands(void) {
 	mu_assert("hash code out of range does not have name",
-			mh_hash_name(0) == NULL);
+			mh_hash_name(0xFF) == NULL);
 	return NULL;
 }
 

@@ -12,7 +12,7 @@ static char *test_multihash_new_crafts_right_multihash(void) {
 	int error;
 	unsigned char buf[256]; // much bigger than needed
 	size_t digest_len = -1;
-	const unsigned char *digest = NULL;
+	unsigned char *digest = NULL;
 
 	error = mh_multihash_digest(sha1_example, sha1_example_length,
 		&digest, &digest_len);

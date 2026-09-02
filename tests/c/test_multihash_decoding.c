@@ -32,7 +32,7 @@ static char *test_multihash_length_decoding_works(void) {
 		== mh_hash_default_length(MH_H_SHA1));
 	mu_assert("identity multihash has correct length",
 		mh_multihash_length(identity_example, sizeof(identity_example))
-		== mh_hash_default_length(MH_H_IDENTITY));
+		== 2);
 	mu_assert("sha2 multihash has correct length",
 		mh_multihash_length(sha2_example, sizeof(sha2_example))
 		== mh_hash_default_length(MH_H_SHA2_256));

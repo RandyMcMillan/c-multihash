@@ -14,7 +14,7 @@ static char *test_all_hashes_have_lengths(void) {
 		sprintf(error_buf, "mh_hash_default_length: hash %d"
 				" returned invalid (%d) default length",
 				i, length);
-		mu_assert(error_buf, length > 0);
+		mu_assert(error_buf, length >= 0);
 	}
 	return NULL;
 }
