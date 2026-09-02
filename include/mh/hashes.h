@@ -3,6 +3,7 @@
 #include "errors.h"
 
 // definitions of hash functions
+#define MH_H_IDENTITY 0x00
 #define MH_H_SHA1 0x11
 #define MH_H_SHA2_256 0x12
 #define MH_H_SHA2_512 0x13
@@ -18,6 +19,7 @@
 
 // list of avaliable hash functions.
 static const int mh_all_hashes[] = {
+	MH_H_IDENTITY,
 	MH_H_SHA1,
 	MH_H_SHA2_256,
 	MH_H_SHA2_512,

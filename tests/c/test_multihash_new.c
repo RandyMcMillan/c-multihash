@@ -27,6 +27,21 @@ static char *test_multihash_new_crafts_right_multihash(void) {
 	return NULL;
 }
 
+static char *test_multihash_identity_roundtrip(void) {
+	int error;
+	const unsigned char digest[] = { 'h', 'i' };
+	unsigned char mh[256];
+	const size_t mh_len = mh_new_length(MH_H_IDENTITY, sizeof(digest));
+
+	error = mh_new(mh, MH_H_IDENTITY, digest, sizeof(digest));
+	mu_assert("creating identity multihash", error == MH_E_NO_ERROR);
+	mu_assert("reading identity code", mh_multihash_hash(mh, mh_len) == MH_H_IDENTITY);
+	mu_assert("reading identity length", mh_multihash_length(mh, mh_len) == (int)sizeof(digest));
+	mu_assert("reading identity digest", memcmp(mh + 2, digest, sizeof(digest)) == 0);
+
+	return NULL;
+}
+
 static char *test_multihash_new_is_reversible(void) {
 	int error = MH_E_NO_ERROR;
 	int code = MH_H_SHA3_512;
@@ -48,7 +63,7 @@ static char *test_multihash_new_is_reversible(void) {
 
 static char *mu_all_tests(void) {
 	mu_run_test(test_multihash_new_crafts_right_multihash);
+	mu_run_test(test_multihash_identity_roundtrip);
 	mu_run_test(test_multihash_new_is_reversible);
 	return NULL;
 }
-

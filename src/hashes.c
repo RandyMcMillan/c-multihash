@@ -15,6 +15,7 @@ static const struct hash_info {
 	const char *name;
 	int length;
 } hash_infos[] = {
+	{ MH_H_IDENTITY, "identity", 0 },
 	{ MH_H_SHA1, "sha1", 20},
 	{ MH_H_SHA2_256, "sha2-256", 32 },
 	{ MH_H_SHA2_512, "sha2-512", 64 },

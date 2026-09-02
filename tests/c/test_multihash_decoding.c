@@ -9,9 +9,13 @@
 char error_buf[256];
 
 static char *test_multihash_hash_decoding_works(void) {
+	unsigned char identity_example[] = { MH_H_IDENTITY, 2, 'h', 'i' };
 	mu_assert("sha1 multihash is detected as sha1",
 		mh_multihash_hash(sha1_example, sizeof(sha1_example))
 		== MH_H_SHA1);
+	mu_assert("identity multihash is detected as identity",
+		mh_multihash_hash(identity_example, sizeof(identity_example))
+		== MH_H_IDENTITY);
 	mu_assert("sha2 multihash is detected as sha2",
 		mh_multihash_hash(sha2_example, sizeof(sha2_example))
 		== MH_H_SHA2_256);
@@ -22,9 +26,13 @@ static char *test_multihash_hash_decoding_works(void) {
 }
 
 static char *test_multihash_length_decoding_works(void) {
+	unsigned char identity_example[] = { MH_H_IDENTITY, 2, 'h', 'i' };
 	mu_assert("sha1 multihash has correct length",
 		mh_multihash_length(sha1_example, sizeof(sha1_example))
 		== mh_hash_default_length(MH_H_SHA1));
+	mu_assert("identity multihash has correct length",
+		mh_multihash_length(identity_example, sizeof(identity_example))
+		== mh_hash_default_length(MH_H_IDENTITY));
 	mu_assert("sha2 multihash has correct length",
 		mh_multihash_length(sha2_example, sizeof(sha2_example))
 		== mh_hash_default_length(MH_H_SHA2_256));
@@ -39,4 +47,3 @@ static char *mu_all_tests(void) {
 	mu_run_test(test_multihash_length_decoding_works);
 	return NULL;
 }
-
